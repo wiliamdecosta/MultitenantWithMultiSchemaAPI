@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * 
- * Table employee ada di setiap masing-masing schema
+ * Table employee ada di setiap schema (kecuali public)
  *
  */
 @Entity
