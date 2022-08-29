@@ -239,45 +239,6 @@ ALTER SEQUENCE "pt-gudang-garam".employee_employee_id_seq OWNED BY "pt-gudang-ga
 
 
 --
--- Name: datasourceconfig; Type: TABLE; Schema: public; Owner: justclick
---
-
-CREATE TABLE public.datasourceconfig (
-    id integer NOT NULL,
-    name character varying(50) NOT NULL,
-    driverclassname character varying(100) NOT NULL,
-    url character varying(500) NOT NULL,
-    username character varying(50) NOT NULL,
-    password character varying(50) NOT NULL,
-    initialize boolean
-);
-
-
-ALTER TABLE public.datasourceconfig OWNER TO justclick;
-
---
--- Name: datasourceconfig_id_seq; Type: SEQUENCE; Schema: public; Owner: justclick
---
-
-CREATE SEQUENCE public.datasourceconfig_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.datasourceconfig_id_seq OWNER TO justclick;
-
---
--- Name: datasourceconfig_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: justclick
---
-
-ALTER SEQUENCE public.datasourceconfig_id_seq OWNED BY public.datasourceconfig.id;
-
-
---
 -- Name: flyway_schema_history; Type: TABLE; Schema: public; Owner: justclick
 --
 
@@ -423,13 +384,6 @@ ALTER TABLE ONLY "pt-gudang-garam".employee ALTER COLUMN employee_id SET DEFAULT
 
 
 --
--- Name: datasourceconfig id; Type: DEFAULT; Schema: public; Owner: justclick
---
-
-ALTER TABLE ONLY public.datasourceconfig ALTER COLUMN id SET DEFAULT nextval('public.datasourceconfig_id_seq'::regclass);
-
-
---
 -- Name: schema_history sh_id; Type: DEFAULT; Schema: public; Owner: justclick
 --
 
@@ -465,17 +419,6 @@ COPY "pt-adaro".employee (employee_id, employee_name, employee_nik, employee_add
 
 COPY "pt-gudang-garam".employee (employee_id, employee_name, employee_nik, employee_address) FROM stdin;
 1	Angga Gemilang	82837208	Bandung
-\.
-
-
---
--- Data for Name: datasourceconfig; Type: TABLE DATA; Schema: public; Owner: justclick
---
-
-COPY public.datasourceconfig (id, name, driverclassname, url, username, password, initialize) FROM stdin;
-1	pt-adaro	org.postgresql.Driver	jdbc:postgresql://localhost:5433/db_microservice?escapeSyntaxCallMode=callIfNoReturn&currentSchema=pt-adaro	justclick	justclick123	t
-2	pt-gudang-garam	org.postgresql.Driver	jdbc:postgresql://localhost:5433/db_microservice?escapeSyntaxCallMode=callIfNoReturn&currentSchema=pt-gudang-garam	justclick	justclick123	t
-4	public	org.postgresql.Driver	jdbc:postgresql://localhost:5433/db_microservice?escapeSyntaxCallMode=callIfNoReturn&currentSchema=public	justclick	justclick123	t
 \.
 
 
@@ -540,13 +483,6 @@ SELECT pg_catalog.setval('"pt-gudang-garam".employee_employee_id_seq', 1, true);
 
 
 --
--- Name: datasourceconfig_id_seq; Type: SEQUENCE SET; Schema: public; Owner: justclick
---
-
-SELECT pg_catalog.setval('public.datasourceconfig_id_seq', 4, true);
-
-
---
 -- Name: schema_history_sh_id_seq; Type: SEQUENCE SET; Schema: public; Owner: justclick
 --
 
@@ -592,14 +528,6 @@ ALTER TABLE ONLY public.flyway_schema_history
 
 
 --
--- Name: datasourceconfig pk_datasourceconfig; Type: CONSTRAINT; Schema: public; Owner: justclick
---
-
-ALTER TABLE ONLY public.datasourceconfig
-    ADD CONSTRAINT pk_datasourceconfig PRIMARY KEY (id);
-
-
---
 -- Name: schema_history pk_schema_history; Type: CONSTRAINT; Schema: public; Owner: justclick
 --
 
@@ -635,13 +563,6 @@ CREATE UNIQUE INDEX employee_pk ON "pt-adaro".employee USING btree (employee_id)
 --
 
 CREATE UNIQUE INDEX employee_pk ON "pt-gudang-garam".employee USING btree (employee_id);
-
-
---
--- Name: datasourceconfig_pk; Type: INDEX; Schema: public; Owner: justclick
---
-
-CREATE UNIQUE INDEX datasourceconfig_pk ON public.datasourceconfig USING btree (id);
 
 
 --
