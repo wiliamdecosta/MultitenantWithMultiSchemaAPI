@@ -48,7 +48,7 @@ public class TenantDataSource implements Serializable {
         }
         return dataSource;
     }
-
+    
     @PostConstruct
     public Map<String, DataSource> getAll() {
         List<Tenant> tenantList = tenantRepo.findAll();

@@ -18,10 +18,7 @@ public class RequestInterceptor implements HandlerInterceptor {
         
         System.out.println("RequestURI::" + requestURI +" || Search for X-TenantID  :: " + tenantID);
         System.out.println("____________________________________________");
-        /*if (tenantID == null) {
-        	TenantContext.setCurrentTenant("public");
-            return true;
-        }*/
+        
         TenantContext.setCurrentTenant(tenantID);
         return true;
     }
