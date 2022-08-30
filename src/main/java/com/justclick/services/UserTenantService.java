@@ -17,8 +17,10 @@ public class UserTenantService {
 
 	public CreateUserAndTenantOutput callCreateSchemaProcedure(CreateUserAndTenantInput input) {
 		
-		String tenantScema = input.getTenantName().trim().replace("."," ").replace(" ", "-").toLowerCase();
+		//tenant schema is from tenant name
+		String tenantScema = input.getTenantName().trim().replace(". "," ").replace(".","-").replace(" ", "-").toLowerCase();
 		input.setTenantSchema(tenantScema);
+		input.setUserEnabled(true);
 		
 		Map<String, Object> outputParam =  utRepo.callCreateSchemaProcedure(input.getTenantName(),
 				input.getTenantAddress(), 
@@ -31,15 +33,17 @@ public class UserTenantService {
 		CreateUserAndTenantOutput createdUserAndTenantOutput = new CreateUserAndTenantOutput();
 		
 		outputParam.forEach((k, v) -> {
+			System.err.println(k + " : " + v);
+			
 			if(k.compareTo("outMessage") == 0) {
 				createdUserAndTenantOutput.setMessage((String) v);
 			}
 			
-			if(k.compareTo("isSuccess") == 0) {
+			if(k.compareTo("outSuccess") == 0) {
 				createdUserAndTenantOutput.setSuccess((boolean)v);
 			}
 			
-			if(k.compareTo("isCreateUserSuccess") == 0) {
+			if(k.compareTo("outIsCreateUserSuccess") == 0) {
 				createdUserAndTenantOutput.setCreateUserSuccess((boolean)v);
 			}
 			
