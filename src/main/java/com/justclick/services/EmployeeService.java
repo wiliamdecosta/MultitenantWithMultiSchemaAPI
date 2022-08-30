@@ -1,4 +1,4 @@
-package com.justclick.service;
+package com.justclick.services;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.justclick.bean.Employee;
-import com.justclick.repo.EmployeeRepository;
+import com.justclick.beans.Employee;
+import com.justclick.repositories.EmployeeRepository;
 
 @Service
 public class EmployeeService {

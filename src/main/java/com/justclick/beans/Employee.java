@@ -1,4 +1,4 @@
-package com.justclick.bean;
+package com.justclick.beans;
 
 import java.io.Serializable;
 

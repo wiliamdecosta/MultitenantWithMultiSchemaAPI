@@ -1,4 +1,4 @@
-package com.justclick.config;
+package com.justclick.configs;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -13,8 +13,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.stereotype.Component;
 
-import com.justclick.bean.Tenant;
-import com.justclick.repo.TenantRepository;
+import com.justclick.beans.Tenant;
+import com.justclick.repositories.TenantRepository;
 
 @Component
 public class TenantDataSource implements Serializable {

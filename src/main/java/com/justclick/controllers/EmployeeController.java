@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.justclick.bean.Employee;
-import com.justclick.service.EmployeeService;
+import com.justclick.beans.Employee;
+import com.justclick.services.EmployeeService;
 
 
 /**
@@ -36,7 +36,7 @@ public class EmployeeController {
     }
 	
 	@GetMapping("/all")
-    public ResponseEntity<?> all(@RequestBody Employee employee) throws SQLException {
+    public ResponseEntity<?> all() throws SQLException {
         List<Employee> listEmployee = service.getAll();
         return new ResponseEntity<>(listEmployee, HttpStatus.OK);
     }

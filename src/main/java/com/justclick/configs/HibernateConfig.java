@@ -1,4 +1,4 @@
-package com.justclick.config;
+package com.justclick.configs;
 
 import java.util.HashMap;
 import java.util.Map;
