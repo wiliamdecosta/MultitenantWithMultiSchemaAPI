@@ -65,6 +65,10 @@ public class UserTenantService {
 		return createdUserAndTenantOutput;
 	}
 	
+	/**
+	 * add data source while application running
+	 * @param tenantSchema
+	 */
 	private void addDataSource(String tenantSchema) {
 		DataSourceBasedMultiTenantConnectionProviderImpl dataSourceProvider = context.getBean(DataSourceBasedMultiTenantConnectionProviderImpl.class);
 		dataSourceProvider.addDataSource(tenantSchema);
