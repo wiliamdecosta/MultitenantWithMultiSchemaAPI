@@ -57,6 +57,7 @@ public class UserTenantService {
 			}
 		});
 		
+		//add data source if created schema success
 		if(createdUserAndTenantOutput.isSuccess()) {
 			addDataSource(tenantScema);
 		}
