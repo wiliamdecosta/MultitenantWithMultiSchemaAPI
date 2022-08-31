@@ -48,7 +48,20 @@ public class DataSourceBasedMultiTenantConnectionProviderImpl extends AbstractDa
             TenantDataSource tenantDataSource = context.getBean(TenantDataSource.class);
             map.putAll(tenantDataSource.getAll());
         }
-        return map.get(tenantIdentifier) != null ? map.get(tenantIdentifier) : map.get(DEFAULT_TENANT_ID);
+        return map.get(tenantIdentifier) != null ? map.get(tenantIdentifier) : map.get(DEFAULT_TENANT_ID);   
     }
+    
+    
+    /**
+     * Modified by wiliam 2022
+     * @param schemaName
+     */
+    public void addDataSource(String schemaName) {
+    	TenantDataSource tenantDataSource = context.getBean(TenantDataSource.class);
+    	DataSource newDataSouce = tenantDataSource.createDataSource(schemaName);
+    	
+    	map.put(schemaName, newDataSouce);
+    }
+    
 }
 

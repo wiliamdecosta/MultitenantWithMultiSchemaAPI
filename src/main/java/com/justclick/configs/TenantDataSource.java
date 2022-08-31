@@ -38,13 +38,13 @@ public class TenantDataSource implements Serializable {
     @Value("${spring.datasource.url}")
     private String urlDB;
 
-    public DataSource getDataSource(String name) {
-        if (dataSources.get(name) != null) {
-            return dataSources.get(name);
+    public DataSource getDataSource(String schemaName) {
+        if (dataSources.get(schemaName) != null) {
+            return dataSources.get(schemaName);
         }
-        DataSource dataSource = createDataSource(name);
+        DataSource dataSource = createDataSource(schemaName);
         if (dataSource != null) {
-            dataSources.put(name, dataSource);
+            dataSources.put(schemaName, dataSource);
         }
         return dataSource;
     }
@@ -62,7 +62,7 @@ public class TenantDataSource implements Serializable {
     }
 
     
-    private DataSource createDataSource(String schemaName) {
+    public DataSource createDataSource(String schemaName) {
         Tenant tenant = tenantRepo.findBySchema(schemaName);
         if (tenant != null) {
             DataSourceBuilder<?> factory = DataSourceBuilder

@@ -3,8 +3,10 @@ package com.justclick.services;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
+import com.justclick.impl.DataSourceBasedMultiTenantConnectionProviderImpl;
 import com.justclick.inputs.CreateUserAndTenantInput;
 import com.justclick.outputs.CreateUserAndTenantOutput;
 import com.justclick.repositories.UserTenantRepository;
@@ -14,6 +16,9 @@ public class UserTenantService {
 	
 	@Autowired
 	private UserTenantRepository utRepo;
+	
+	 @Autowired
+	 private ApplicationContext context;
 
 	public CreateUserAndTenantOutput callCreateSchemaProcedure(CreateUserAndTenantInput input) {
 		
@@ -52,6 +57,15 @@ public class UserTenantService {
 			}
 		});
 		
+		if(createdUserAndTenantOutput.isSuccess()) {
+			addDataSource(tenantScema);
+		}
+		
 		return createdUserAndTenantOutput;
+	}
+	
+	private void addDataSource(String tenantSchema) {
+		DataSourceBasedMultiTenantConnectionProviderImpl dataSourceProvider = context.getBean(DataSourceBasedMultiTenantConnectionProviderImpl.class);
+		dataSourceProvider.addDataSource(tenantSchema);
 	}
 }
